@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom';
 import MainLayout from '../src/layouts/MainLayout';
-import AdminLogin from '../src/Screens/AdminLogin';
+import AdminLogin from '../src/screens/AdminLogin';
 import Home from '../src/screens/Home';;
 import PrivateRoute from '../src/components/PrivateRoute';
 import UserCards from '../src/components/UserCards';
