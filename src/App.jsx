@@ -6,16 +6,16 @@ import Home from '../src/screens/Home';;
 import PrivateRoute from '../src/components/PrivateRoute';
 import UserCards from '../src/components/UserCards';
 import UserProfile from '../src/components/UserProfile';
+import { Navigate } from 'react-router-dom';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      {/* Public Route */}
+      <Route path='/' element={<Navigate to="/login" replace />} />
       <Route path='/login' element={<AdminLogin />} />
 
-      {/* Private Routes */}
       <Route element={<PrivateRoute />}>
-        <Route path='/' element={<MainLayout />}>
+        <Route path='/dashboard' element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path='users' element={<UserCards />} />
           <Route path='user/:id' element={<UserProfile />} />
@@ -24,6 +24,7 @@ const router = createBrowserRouter(
     </>
   )
 );
+
 
 const App = () => {
   return <RouterProvider router={router} />;
