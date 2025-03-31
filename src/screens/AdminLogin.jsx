@@ -29,7 +29,7 @@ const AdminLogin = () => {
                 throw new Error('Invalid credentials');
             }
 
-            navigate('/');
+            navigate('/home');
         } catch (error) {
             setError('Invalid username, password, or insufficient privileges');
         }

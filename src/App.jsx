@@ -11,14 +11,13 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       {/* Public Route */}
-      <Route path='/login' element={<AdminLogin />} />
+      <Route path='/' element={<AdminLogin />} />
 
       {/* Private Routes */}
       <Route element={<PrivateRoute />}>
-        <Route path='/' element={<MainLayout />}>
+        <Route path='/home' element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path='users' element={<UserCards />} />
-          <Route path='user/:id' element={<UserProfile />} />
+          <Route path="user/:id" element={<UserProfile />} />
         </Route>
       </Route>
     </>

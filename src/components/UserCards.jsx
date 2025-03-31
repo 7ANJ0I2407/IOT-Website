@@ -55,7 +55,7 @@ const UserCards = () => {
         <div 
           key={user._id} 
           className="bg-white shadow-md rounded-lg p-4 cursor-pointer hover:shadow-lg transition"
-          onClick={() => navigate(`/user/${user._id}`)}
+          onClick={() => navigate(`user/${user._id}`)}
         >
           <h3 className="text-xl font-bold">{user.name}</h3>
           <p className="text-gray-600">{user.phone}</p>

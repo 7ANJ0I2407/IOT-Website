@@ -40,7 +40,7 @@ const Navbar = () => {
       }
 
       setIsAuthenticated(false);
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -50,7 +50,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-gray-800 p-4 flex justify-between items-center">
-      <button className="text-white font-semibold text-lg" onClick={() => navigate("/")}>
+      <button className="text-white font-semibold text-lg" onClick={() => navigate("/home")}>
         Home
       </button>
       <button

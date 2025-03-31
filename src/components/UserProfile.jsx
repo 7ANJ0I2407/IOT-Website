@@ -98,7 +98,7 @@ const UserProfile = () => {
               throw new Error(data.message || "Failed to delete user");
           }
           alert(`User ${user.name} deleted successfully!`);
-          navigate("/");
+          navigate("/home");
       } catch (error) {
           alert("Error deleting user: " + error.message);
       }
