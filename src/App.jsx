@@ -1,11 +1,11 @@
 import React from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom';
-import MainLayout from './layouts/MainLayout';
-import AdminLogin from './Screens/AdminLogin';
-import Home from './screens/Home';
-import PrivateRoute from './components/PrivateRoute';
-import UserCards from './components/UserCards';
-import UserProfile from './components/UserProfile';
+import MainLayout from '../src/layouts/MainLayout';
+import AdminLogin from '../src/Screens/AdminLogin';
+import Home from '../src/screens/Home';;
+import PrivateRoute from '../src/components/PrivateRoute';
+import UserCards from '../src/components/UserCards';
+import UserProfile from '../src/components/UserProfile';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
