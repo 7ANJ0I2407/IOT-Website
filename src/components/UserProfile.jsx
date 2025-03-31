@@ -18,7 +18,6 @@ const UserProfile = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                console.log(id);
                 const response = await fetch(`${API_BASE_URL}/users/admin/seller/${id}`, {
                     method: "GET",
                     credentials: "include",

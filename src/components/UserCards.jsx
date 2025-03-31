@@ -42,7 +42,7 @@ const UserCards = () => {
       fetchUsers();
     }, 2000);
     console.log("Fetching users...");
-    console.log(users);
+    // console.log(users);
 
   }, []);
 

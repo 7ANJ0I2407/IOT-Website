@@ -6,6 +6,9 @@ import Home from '../src/screens/Home';;
 import PrivateRoute from '../src/components/PrivateRoute';
 import UserCards from '../src/components/UserCards';
 import UserProfile from '../src/components/UserProfile';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true; // Enable sending cookies with requests
 
 const router = createBrowserRouter(
   createRoutesFromElements(
