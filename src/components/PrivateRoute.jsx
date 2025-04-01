@@ -37,12 +37,12 @@ const PrivateRoute = () => {
 
     if (!authState.isAuthenticated) {
         // If not authenticated, redirect to login or public route
-        return <Navigate to="/home" replace />;
+        return <Navigate to="/error" replace />;
     }
 
     if (authState.isAuthenticated && !authState.isAdmin) {
         // If authenticated but not an admin, redirect to a different route
-        return <Navigate to="/login" replace />;
+        return <Navigate to="/unauthorized" replace />;
     }
 
     // If authenticated and an admin, allow access to the nested route

@@ -7,6 +7,8 @@ import PrivateRoute from '../src/components/PrivateRoute';
 import UserCards from '../src/components/UserCards';
 import UserProfile from '../src/components/UserProfile';
 import axios from 'axios';
+import Error from './components/Error';
+import Unauthorized from './components/Unauthorized';
 
 axios.defaults.withCredentials = true; // Enable sending cookies with requests
 
@@ -23,6 +25,8 @@ const router = createBrowserRouter(
           <Route path="user/:id" element={<UserProfile />} />
         </Route>
       </Route>
+      <Route path = '/error' element = {<Error/>} />
+      <Route path = '/unauthorized' element = {<Unauthorized/>} />
     </>
   )
 );
