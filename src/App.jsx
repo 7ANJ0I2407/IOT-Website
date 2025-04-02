@@ -9,10 +9,12 @@ import UserProfile from '../src/components/UserProfile';
 import axios from 'axios';
 import Error from './components/Error';
 import Unauthorized from './components/Unauthorized';
+import { createHashRouter } from 'react-router-dom';
+
 
 axios.defaults.withCredentials = true; // Enable sending cookies with requests
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <>
       {/* Public Route */}
