@@ -38,8 +38,9 @@ const Navbar = () => {
       if (!response.ok) {
         throw new Error("Logout failed");
       }
-
+      const data = await response.json();
       setIsAuthenticated(false);
+      alert(data.message); // Show logout message
       navigate("/");
     } catch (error) {
       console.error("Logout failed:", error);
