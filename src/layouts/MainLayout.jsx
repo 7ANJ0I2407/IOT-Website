@@ -1,14 +1,17 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Navbar from '../components/Navbar'
+// src/layouts/AdminLayout.jsx
+import React from "react";
+import Navbar from "../components/Navbar";
+import { Outlet } from "react-router-dom";
 
-const MainLayout = () => {
+const AdminLayout = () => {
   return (
     <>
-    <Navbar/>
-    <Outlet/>
+      <Navbar />
+      <div className="p-4">
+        <Outlet /> {/* Nested route (like /dashboard) will render here */}
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default MainLayout
+export default AdminLayout;

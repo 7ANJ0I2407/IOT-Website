@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from 'lucide-react';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { useAuth } from '../components/AuthContext';
 
 
 
@@ -11,6 +12,7 @@ const AdminLogin = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { setIsAuthenticated } = useAuth();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -18,7 +20,7 @@ const AdminLogin = () => {
         setLoading(true);
 
         try {
-            const response = await fetch(`${API_BASE_URL}/users/admin/login`, {
+            const response = await fetch(`${API_BASE_URL}/api/admin/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),
@@ -28,8 +30,9 @@ const AdminLogin = () => {
             if (!response.ok) {
                 throw new Error('Invalid credentials');
             }
+            setIsAuthenticated(true); // Set authentication state to true
 
-            navigate('/home');
+            navigate('/upload'); // Redirect to the dashboard on successful login
         } catch (error) {
             setError('Invalid username, password, or insufficient privileges');
         }
@@ -39,7 +42,7 @@ const AdminLogin = () => {
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-100 px-6 py-12">
             <div className="w-full max-w-md bg-white p-8 shadow-lg rounded-lg">
-                <h2 className="text-center text-2xl font-bold text-gray-900">Admin Login</h2>
+                <h2 className="text-center text-2xl font-bold text-gray-900">Login</h2>
                 {error && <p className="mt-4 text-center text-red-500">{error}</p>}
                 <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
                     <div>

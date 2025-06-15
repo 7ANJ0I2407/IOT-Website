@@ -12,13 +12,14 @@ const PrivateRoute = () => {
   useEffect(() => {
       const checkAuth = async () => {
           try {
-              const response = await fetch(`${API_BASE_URL}/users/admin/auth`, {
+              const response = await fetch(`${API_BASE_URL}/api/admin/auth`, {
                 method: 'GET',
                 credentials: 'include', // This allows sending cookies
             });
               if (!response.ok) throw new Error('Unauthorized');
 
               const data = await response.json();
+              console.log("Response: ", response);  // Log the response object
               // console.log("Data: ", data);  // Log the data received from the server
               // console.log("Role: ", data.user.role);  // Log the role received from the server
               setAuthState({ isAuthenticated: true, isAdmin: data.user.role === 'admin' });

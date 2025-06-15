@@ -1,65 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Navbar = () => {
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(true); // Assume authenticated initially
-
-  // Check authentication status on component mount
-  // useEffect(() => {
-  //   const checkAuth = async () => {
-  //     try {
-  //       const response = await fetch(`${API_BASE_URL}/users/admin/check-auth`, {
-  //         method: "GET",
-  //         credentials: "include", // Send cookies to check if session exists
-  //       });
-
-  //       if (!response.ok) {
-  //         throw new Error("Not authenticated");
-  //       }
-  //     } catch (error) {
-  //       setIsAuthenticated(false);
-  //       navigate("/login"); // Redirect to login if not authenticated
-  //     }
-  //   };
-
-  //   checkAuth();
-  // }, [navigate]);
 
   const handleLogout = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/users/admin/logout`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/logout`, {
         method: "POST",
         credentials: "include",
       });
+      if (!response.ok) throw new Error("Logout failed");
 
-      if (!response.ok) {
-        throw new Error("Logout failed");
-      }
       const data = await response.json();
+      alert(data.message);
       setIsAuthenticated(false);
-      alert(data.message); // Show logout message
       navigate("/");
-    } catch (error) {
-      console.error("Logout failed:", error);
+    } catch (err) {
+      console.error("Logout error:", err);
     }
   };
 
-  if (!isAuthenticated) return null; // Do not render Navbar if not authenticated
+  if (isAuthenticated === null) return null; // Waiting for auth check
 
   return (
-    <nav className="bg-gray-800 p-4 flex justify-between items-center">
-      <button className="text-white font-semibold text-lg" onClick={() => navigate("/home")}>
-        Home
-      </button>
-      <button
-        className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-        onClick={handleLogout}
+    <nav className="bg-gray-900 p-4 flex flex-row-reverse">
+      {/* <button
+        className="text-white font-semibold text-lg"
+        onClick={() => navigate("/")}
       >
-        Logout
-      </button>
+        Home
+      </button> */}
+      {isAuthenticated && (
+        <button
+          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+      )}
     </nav>
   );
 };

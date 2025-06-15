@@ -1,34 +1,34 @@
 import React from 'react';
-import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom';
-import MainLayout from '../src/layouts/MainLayout';
-import AdminLogin from '../src/screens/AdminLogin';
-import Home from '../src/screens/Home';;
-import PrivateRoute from '../src/components/PrivateRoute';
-import UserCards from '../src/components/UserCards';
-import UserProfile from '../src/components/UserProfile';
-import axios from 'axios';
+import {
+  createHashRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  Route,
+} from 'react-router-dom';
+import AdminLogin from './screens/AdminLogin';
+import PrivateRoute from './components/PrivateRoute';
 import Error from './components/Error';
 import Unauthorized from './components/Unauthorized';
-import { createHashRouter } from 'react-router-dom';
+import UploadFirmwarePage from './screens/OTA';
+import axios from 'axios';
+import AdminLayout from './layouts/MainLayout'; // ⬅️ import layout
 
-
-axios.defaults.withCredentials = true; // Enable sending cookies with requests
+axios.defaults.withCredentials = true; // Allow cookies
 
 const router = createHashRouter(
   createRoutesFromElements(
     <>
-      {/* Public Route */}
-      <Route path='/' element={<AdminLogin />} />
+      <Route path="/" element={<AdminLogin />} />
 
-      {/* Private Routes */}
+      {/* Private Routes with Navbar */}
       <Route element={<PrivateRoute />}>
-        <Route path='/home' element={<MainLayout />}>
-          <Route index element={<Home />} />
-          <Route path="user/:id" element={<UserProfile />} />
+        <Route element={<AdminLayout />}>
+          <Route path="/upload" element={<UploadFirmwarePage />} />
         </Route>
       </Route>
-      <Route path = '/error' element = {<Error/>} />
-      <Route path = '/unauthorized' element = {<Unauthorized/>} />
+
+      <Route path="/error" element={<Error />} />
+      <Route path="/unauthorized" element={<Unauthorized />} />
     </>
   )
 );
